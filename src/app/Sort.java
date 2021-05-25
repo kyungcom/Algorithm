@@ -56,4 +56,50 @@ public class Sort {
         }
     }
 
+    static void mergeSort2(int low, int high, int[] arr){
+
+        if (high > low){
+            int midIndex = (low + high) / 2;
+            mergeSort2(low, midIndex, arr);
+            mergeSort2(midIndex+1, high, arr);
+            merge2(low, midIndex, high, arr);
+
+        }
+    }
+
+    static void merge2(int low, int mid, int high, int[] arr){
+        int i=low, k=0, j=mid+1;
+        int[] mergedArr = new int[high - low + 1];
+
+        while (i < mid+1 && j < high+1) {
+                if (arr[i] < arr[j]) {
+                    mergedArr[k] = arr[i];
+                    i++;
+                } else {
+                    mergedArr[k] = arr[j];
+                    j++;
+                }
+                k++;
+        }
+
+        if (i > mid){
+            while (j < high+1){
+                mergedArr[k] = arr[j];
+                j++;
+                k++;
+            }
+        } else {
+            while (i < mid+1){
+                mergedArr[k] = arr[i];
+                i++;
+                k++;
+            }
+        }
+
+        for (int x = low; x <= high; x++){
+            arr[x] = mergedArr[x-low];
+        }
+
+    }
+
 }
