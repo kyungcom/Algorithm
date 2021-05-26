@@ -59,15 +59,35 @@ public class Greedy {
         }
 
         System.out.println(result);
+    }
 
+    //이것이 코딩테스트다 교재 P.99 1이 될 때까지
+    public static void duringBecomeOne(){
+        Scanner sc = new Scanner(System.in);
+        String inputNums = sc.nextLine();
+        String[] arrNum = inputNums.split(" ");
 
+        int n = Integer.parseInt(arrNum[0]);
+        int k = Integer.parseInt(arrNum[1]);
 
+        int result = 0;
+
+        while (n != 1){
+            if(n % k == 0){
+                n = n / k;
+            } else {
+                n = n - 1;
+            }
+            result++;
+        }
+
+        System.out.println(result);
     }
 
 
     public static void main(String args[]) {
 
-        numCard();
+        duringBecomeOne();
 
     }
 

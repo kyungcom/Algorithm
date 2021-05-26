@@ -7,7 +7,7 @@ public class Sort {
     public static void main(String args[]){
         int[] S={3, 5, 2, 9, 10, 14, 4, 8};
 
-        mergeSort(8, S);
+        quickSort(0, 7, S);
 
         System.out.println(Arrays.toString(S));
 
@@ -100,6 +100,33 @@ public class Sort {
             arr[x] = mergedArr[x-low];
         }
 
+    }
+
+    static void quickSort(int low, int high, int[] arr){
+        int pivotPoint;
+        if (high > low) {
+            pivotPoint = partition(low, high, arr);
+            quickSort(low, pivotPoint - 1, arr);
+            quickSort(pivotPoint + 1, high, arr);
+        }
+    }
+
+    static int partition(int low, int high, int[] arr){
+        int pivotItem = arr[low];
+        int j = low;
+        for (int i = low + 1; i <=high; i++){
+            if (arr[i] < pivotItem){
+                j++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        int temp = arr[low];
+        arr[low] = arr[j];
+        arr[j] = temp;
+
+        return j;
     }
 
 }
