@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Realization {
 
     public static void main(String args[]){
-        sight();
+        knightOfKingdom();
     }
     
     //이것이 코딩테스트다 p.110 상하좌우
@@ -61,5 +61,34 @@ public class Realization {
         }
 
         System.out.println(result);
+    }
+
+    //이것이 코딩테스트다 p.115 왕실의 나이트
+    static void knightOfKingdom(){
+        Scanner sc = new Scanner(System.in);
+        String start = sc.nextLine();
+        int col = Character.getNumericValue(start.charAt(0)) - Character.getNumericValue('a') + 1;
+        int row = Integer.parseInt(start.substring(1));
+
+        int[][] steps={{-2, -1}, {-2, 1}, {2, -1}, {2, 1} ,{1, -2}, {-1, -2}, {1, 2}, {-1, 2}};
+
+        int result = 0;
+
+        for (int[] arr : steps){
+            int movedStatusX;
+            int movedStatusY;
+
+            movedStatusX = col + arr[1];
+            movedStatusY = row + arr[0];
+
+            if (movedStatusX < 1 || movedStatusY < 1 || movedStatusY > 8 || movedStatusX > 8){
+                continue;
+            } else {
+                result++;
+            }
+
+        }
+        System.out.println(result);
+
     }
 }
