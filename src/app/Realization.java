@@ -1,11 +1,13 @@
 package app;
 
+import com.sun.org.apache.xerces.internal.impl.xs.SchemaNamespaceSupport;
+
 import java.util.Scanner;
 
 public class Realization {
 
     public static void main(String args[]){
-        knightOfKingdom();
+        gameDevelop();
     }
     
     //이것이 코딩테스트다 p.110 상하좌우
@@ -89,6 +91,64 @@ public class Realization {
 
         }
         System.out.println(result);
+
+    }
+
+    //이것이 코딩 테스트다 p.119 게임 개발
+    static void gameDevelop(){
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        int[][] map = new int[n][m];
+
+        int nowCol = sc.nextInt();
+        int nowRow = sc.nextInt();
+        int lookForward = sc.nextInt();
+        int[][] forward = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < m; j++){
+                map[i][j] = sc.nextInt();
+            }
+        }
+
+        map[nowCol][nowRow] = 0;
+
+        int cantMove = 0;
+        int move = 1;
+
+        while (true) {
+            lookForward = (lookForward + 3) % 4;
+            int col = nowCol + forward[lookForward][1];
+            int row = nowRow + forward[lookForward][0];
+            if (col >= 0 && col < n && row >= 0 && row < m) {
+                if (map[col][row] == 1) {
+                    cantMove++;
+                    if (cantMove == 3) {
+                        break;
+                    }
+                    continue;
+                } else {
+                    map[nowCol][nowRow] = 1;
+                    nowCol = col;
+                    nowRow = row;
+                    cantMove = 0;
+                    move++;
+                }
+            }else {
+                cantMove++;
+                if (cantMove == 3) {
+                    break;
+                }
+            }
+
+        }
+
+
+        System.out.println(move);
+
 
     }
 }
