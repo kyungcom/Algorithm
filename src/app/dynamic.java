@@ -1,10 +1,11 @@
 package app;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class dynamic {
     public static void main(String args[]){
-        System.out.println(floorWork());
+        System.out.println(giveMoney());
     }
 
 
@@ -104,6 +105,33 @@ public class dynamic {
         for (int i = 0; i < n; i++){
             arr[i] = sc.nextInt();
         }
+
+        int minMoney[] = new int[m+1];
+
+        Arrays.sort(arr);
+
+        for (int i = 1; i < arr[0]; i++){
+            minMoney[i] = -1;
+        }
+        for (int i = arr[0]; i <= m; i++){
+            minMoney[i] = 10000000;
+            for (int x : arr) {
+                if (x == i){
+                    minMoney[i] = 1;
+                }
+                else{
+                    if((i - x) >= 0) {
+                        if (minMoney[i - x] != -1) {
+                            minMoney[i] = Math.min(minMoney[i], minMoney[i - x] + 1);
+                        }
+                    }
+                }
+            }
+            if (minMoney[i] == 10000000){
+                minMoney[i] = -1;
+            }
+        }
+        return minMoney[m];
 
 
     }
