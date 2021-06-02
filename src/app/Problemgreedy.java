@@ -127,7 +127,32 @@ public class Problemgreedy {
 
     }
 
+    //이것이 코딩테스트다 p.314 만들 수 없는 금액
+    public static void cantmake(){
+        Scanner sc = new Scanner(System.in);
+        int numOfCoins = sc.nextInt();
+        Integer coins[] = new Integer[numOfCoins];
+
+        for (int i = 0; i < numOfCoins; i++){
+            coins[i] = sc.nextInt();
+        }
+
+        Arrays.sort(coins, Collections.reverseOrder());
+
+        int money = 1;
+
+        while(true) {
+
+            for (int i = 0; i < numOfCoins; i++) {
+                if (money < coins[numOfCoins])
+                    continue;
+
+            }
+        }
+
+    }
+
     public static void main(String args[]){
-        System.out.println(reverseString());
+        cantmake();
     }
 }
